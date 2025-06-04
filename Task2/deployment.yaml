@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-deployment
+spec:
+  replicas: 1 # Сколько копий приложения запустить
+  selector:
+    matchLabels:
+      app: scaletestapp
+  template:
+    metadata:
+      labels:
+        app: scaletestapp
+    spec:
+      containers:
+        - name: scaletestapp
+          image: shestera/scaletestapp
+          ports:
+            - containerPort: 8080 # Порт, на котором слушает приложение
+          resources:
+            # requests:
+            #   memory: "100Mi"
+            limits:
+              memory: "30Mi"
